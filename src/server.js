@@ -1,9 +1,13 @@
 const express = require('express')
 const server = express()
 const routes = require('./routes')
+const path = require("path")
 
 //usando template engine , estamos dizendo para o motor de visualização que estamos trabalhando com ejs
 server.set('view engine', 'ejs')
+
+//mudar a licalização da pasta views
+server.set('views', path.join(__dirname, 'views'))
 
 //habilitar arquivos estaticos, que não são alterados com frequencia
 server.use(express.static("public"))
