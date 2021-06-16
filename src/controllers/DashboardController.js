@@ -6,6 +6,15 @@ module.exports = {
     index(req, res) {
         const jobs = JobData.get()
         const profile = ProfileData.get()
+
+        let statusCount = {
+            progress: 0,
+            done: 0,
+            total: jobs.length
+        }
+
+        let jobTotalHours = 0
+
         //estamos usando o map para mapear o jobs ele faz a mesma coisa que o foreach percorrendo todos os dados dentro do jobs,
         //mas a diferença consiste no fato de a gente poder usar um return no map atribuindo o novo objeto que ele criou para nos
         //com referencia no jobs a alguma variavel por exemplo, nesse caso estamos mapeando o jobs e retornando o novo objeto para
@@ -16,6 +25,11 @@ module.exports = {
             const remaining = JobUtils.remainingDays(job)
             const status = remaining <= 0 ? 'done' : 'progress'
 
+            //somando a quantidade de status progress/done
+            statusCount[status] += 1
+
+            jobTotalHours = status == 'progress' ? jobTotalHours + Number(job['daily-hours']): jobTotalHours
+        
             return {
                 ...job,
                 remaining,
@@ -23,7 +37,11 @@ module.exports = {
                 budget: JobUtils.calculateBudget(job, profile['value-hour'])
             }
         })
-        return res.render('index', { jobs: updatedJobs })
+
+        //qtd de horas que quero trabalhar (profile) - a qtd de horas nos job em progress
+        const freeHours = profile['hours-per-day'] - jobTotalHours
+
+        return res.render('index', { jobs: updatedJobs, statusCount : statusCount, profile: profile, freeHours: freeHours})
 
     }
 }
