@@ -8,6 +8,7 @@ export function createJobController(req, res) {
 
 export async function saveJobController(req, res) {
 	//req.body = {name: 'bar', "daily-hours': 5, 'total-hours': 40}
+
 	await createJobsService({
 		name: req.body.name,
 		dailyHours: req.body.dailyHours,
@@ -32,13 +33,15 @@ export async function showJobController(req, res) {
 		return res.send("job not found!");
 	}
 
-	job.budget = calculateBudget(job, profile["value-hour"]);
+	job.budget = calculateBudget(job, profile.valueHour);
 
 	return res.render("job-edit", { job });
 }
 
 export async function updateJobController(req, res) {
 	const jobId = req.params.id;
+
+	console.log(req.body);
 
 	const updatedJob = {
 		name: req.body.name,

@@ -1,7 +1,7 @@
 
 function remainingDays(job) {
 	//calculo de tempo restante
-	const remainingDays = (job["total-hours"] / job["daily-hours"]).toFixed();
+	const remainingDays = (job.totalHours / job.dailyHours).toFixed();
 
 	const createdDate = new Date(job.created_at);
 	const dueDay = createdDate.getDate() + Number(remainingDays);
@@ -16,6 +16,6 @@ function remainingDays(job) {
 	return dayDiff;
 }
 
-function calculateBudget(job, valueHours) { return valueHours * job["total-hours"]; }
+function calculateBudget(job, valueHours) { return valueHours * job.totalHours; }
 
 export { remainingDays, calculateBudget };

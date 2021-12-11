@@ -26,18 +26,18 @@ export async function index(req, res) {
 		//somando a quantidade de status progress/done
 		statusCount[status] += 1;
 
-		jobTotalHours = status == "progress" ? jobTotalHours + Number(job["daily-hours"]) : jobTotalHours;
+		jobTotalHours = status == "progress" ? jobTotalHours + Number(job.dailyHours) : jobTotalHours;
 
 		return {
 			...job,
 			remaining,
 			status,
-			budget: calculateBudget(job, profile["value-hour"])
+			budget: calculateBudget(job, profile.valueHour)
 		};
 	});
 
 	//qtd de horas que quero trabalhar (profile) - a qtd de horas nos job em progress
-	const freeHours = profile["hours-per-day"] - jobTotalHours;
+	const freeHours = profile.hoursPerDay - jobTotalHours;
 
 	return res.render("index", { jobs: updatedJobs, statusCount: statusCount, profile: profile, freeHours: freeHours });
 

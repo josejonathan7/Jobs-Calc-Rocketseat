@@ -33,7 +33,7 @@
         <h2><%= profile.name %> </h2>
         <p>
           O valor da sua hora é <br/>
-          <strong>R$ <%= profile["value-hour"].toFixed(2).replace('.', ',') %>  </strong>
+          <strong>R$ <%= profile.valueHour.toFixed(2).replace('.', ',') %>  </strong>
         </p>
         <button class="button green" form="form-profile" type="submit">Salvar dados</button>
       </aside>
@@ -72,10 +72,10 @@
                 <input
                   type="amount"
                   step="0.1"
-                  id="monthly-budget"
-                  name="monthly-budget"
+                  id="monthlyBudget"
+                  name="monthlyBudget"
                   placeholder="R$"
-                  value="<%= profile["monthly-budget"] %>"  />
+                  value="<%= profile.monthlyBudget %>"  />
               </div>
 
               <div class="input-wrapper">
@@ -83,9 +83,9 @@
                   quero trabalhar por dia?</label>
                 <input
                   type="number"
-                  id="hours-per-day"
-                  name="hours-per-day"
-                  value="<%= profile["hoursPerDay"] %>"  />
+                  id="hoursPerDay"
+                  name="hoursPerDay"
+                  value="<%= profile.hoursPerDay %>"  />
 
               </div>
             </div>
@@ -96,9 +96,9 @@
                   trabalhar por semana?</label>
                 <input
                   type="number"
-                  id="days-per-week"
-                  name="days-per-week"
-                  value="<%= profile["daysPerWeek"] %>"  />
+                  id="daysPerWeek"
+                  name="daysPerWeek"
+                  value="<%= profile.daysPerWeek %>"  />
 
               </div>
 
@@ -107,9 +107,9 @@
                   por ano você quer tirar férias?</label>
                 <input
                   type="number"
-                  id="vacation-per-year"
-                  name="vacation-per-year"
-                  value="<%= profile["vacationPerYear"] %>"  />
+                  id="vacationPerYear"
+                  name="vacationPerYear"
+                  value="<%= profile.vacationPerYear %>"  />
 
               </div>
             </div>

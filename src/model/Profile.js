@@ -10,11 +10,11 @@ async function getProfileService() {
 	return {
 		name: data.name,
 		avatar: data.avatar,
-		"monthly-budget": data.monthly_budget,
-		"days-per-week": data.days_per_week,
-		"hours-per-day": data.hours_per_day,
-		"vacation-per-year": data.vacation_per_year,
-		"value-hour": data.value_hour
+		monthlyBudget: data.monthly_budget,
+		daysPerWeek: data.days_per_week,
+		hoursPerDay: data.hours_per_day,
+		vacationPerYear: data.vacation_per_year,
+		valueHour: data.value_hour
 	};
 }
 
@@ -24,11 +24,11 @@ async function updateProfileService(newData) {
 	db.run(`UPDATE profile SET
         name = "${newData.name}",
         avatar = "${newData.avatar}",
-        monthly_budget = ${newData["monthly-budget"]},
-        days_per_week = ${newData["days-per-week"]},
-        hours_per_day = ${newData["hours-per-day"]},
-        vacation_per_year = ${newData["vacation-per-year"]},
-        value_hour = ${newData["value-hour"]}
+        monthly_budget = ${newData.monthlyBudget},
+        days_per_week = ${newData.daysPerWeek},
+        hours_per_day = ${newData.hoursPerDay},
+        vacation_per_year = ${newData.vacationPerYear},
+        value_hour = ${newData.valueHour}
         `);
 
 

@@ -10,8 +10,8 @@ async function getJobsService() {
 	return jobs.map(job => ({
 		id: job.id,
 		name: job.name,
-		"daily-hours": job.daily_hours,
-		"total-hours": job.total_hours,
+		dailyHours: job.daily_hours,
+		totalHours: job.total_hours,
 		created_at: job.created_at
 	}));
 
@@ -22,8 +22,8 @@ async function updateJobsService(updatedJob, jobId) {
 
 	await db.run(`UPDATE jobs SET
             name = "${updatedJob.name}",
-            daily_hours = ${updatedJob["daily-hours"]},
-            total_hours = ${updatedJob["total-hours"]}
+            daily_hours = ${updatedJob.dailyHours},
+            total_hours = ${updatedJob.totalHours}
             WHERE id = ${jobId}
             `);
 
@@ -51,8 +51,8 @@ async function createJobsService(updatedJob) {
                 created_at
             ) VALUES (
                 "${updatedJob.name}",
-                ${updatedJob["daily-hours"]},
-                ${updatedJob["total-hours"]},
+                ${updatedJob.dailyHours},
+                ${updatedJob.totalHours},
                 ${updatedJob.created_at}
             )
         `);
