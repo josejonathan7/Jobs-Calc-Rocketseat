@@ -1,7 +1,7 @@
-import {database as DataBase} from "../db/config";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _config = require('../db/config'); var _config2 = _interopRequireDefault(_config);
 
 async function getProfileService() {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 
 	const data = await db.get("SELECT * FROM profile");
 
@@ -19,7 +19,7 @@ async function getProfileService() {
 }
 
 async function updateProfileService(newData) {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 
 	db.run(`UPDATE profile SET
         name = "${newData.name}",
@@ -35,4 +35,4 @@ async function updateProfileService(newData) {
 	await db.close();
 }
 
-export { getProfileService, updateProfileService };
+exports.getProfileService = getProfileService; exports.updateProfileService = updateProfileService;

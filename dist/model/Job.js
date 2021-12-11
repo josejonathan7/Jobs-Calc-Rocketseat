@@ -1,7 +1,7 @@
-import {database as DataBase} from "../db/config";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _config = require('../db/config'); var _config2 = _interopRequireDefault(_config);
 
 async function getJobsService() {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 
 	const jobs = await db.all("SELECT * FROM jobs");
 
@@ -18,7 +18,7 @@ async function getJobsService() {
 }
 
 async function updateJobsService(updatedJob, jobId) {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 
 	await db.run(`UPDATE jobs SET
             name = "${updatedJob.name}",
@@ -31,7 +31,7 @@ async function updateJobsService(updatedJob, jobId) {
 }
 
 async function deleteJobsService(id) {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 	//forEach map filter, find todas essas funções tem funcionalidades parecidas
 	// o filter vai compara o id do meu jobId com o id do meu job, se o id for diferente então ele vai manter aquele id
 	//no meu registro nesse caso no data, se o id for igual então ele vai remover aquele Id, se ele remover algum id então ele devolve um novo array
@@ -42,7 +42,7 @@ async function deleteJobsService(id) {
 }
 
 async function createJobsService(updatedJob) {
-	const db = await DataBase();
+	const db = await _config2.default.call(void 0, );
 
 	await db.run(`INSERT INTO jobs (
                 name,
@@ -61,4 +61,4 @@ async function createJobsService(updatedJob) {
 }
 
 
-export { createJobsService, deleteJobsService, getJobsService, updateJobsService };
+exports.createJobsService = createJobsService; exports.deleteJobsService = deleteJobsService; exports.getJobsService = getJobsService; exports.updateJobsService = updateJobsService;

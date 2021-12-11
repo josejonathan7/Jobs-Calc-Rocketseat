@@ -1,10 +1,10 @@
-import { getJobsService } from "../model/Job";
-import { getProfileService } from "../model/Profile";
-import { remainingDays, calculateBudget } from "../Utils/jobUtils";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _Job = require('../model/Job');
+var _Profile = require('../model/Profile');
+var _jobUtils = require('../Utils/jobUtils');
 
-export async function index(req, res) {
-	const jobs = await getJobsService();
-	const profile = await getProfileService();
+ async function index(req, res) {
+	const jobs = await _Job.getJobsService.call(void 0, );
+	const profile = await _Profile.getProfileService.call(void 0, );
 
 	let statusCount = {
 		progress: 0,
@@ -20,7 +20,7 @@ export async function index(req, res) {
 	//a constante updateJobs, mais ou menos isso... o map retorna um novo array com os dados alterados se vc altera-los...
 	const updatedJobs = jobs.map((job) => {
 		//ajustes no jobs
-		const remaining = remainingDays(job);
+		const remaining = _jobUtils.remainingDays.call(void 0, job);
 		const status = remaining <= 0 ? "done" : "progress";
 
 		//somando a quantidade de status progress/done
@@ -32,7 +32,7 @@ export async function index(req, res) {
 			...job,
 			remaining,
 			status,
-			budget: calculateBudget(job, profile["value-hour"])
+			budget: _jobUtils.calculateBudget.call(void 0, job, profile["value-hour"])
 		};
 	});
 
@@ -41,4 +41,4 @@ export async function index(req, res) {
 
 	return res.render("index", { jobs: updatedJobs, statusCount: statusCount, profile: profile, freeHours: freeHours });
 
-}
+} exports.index = index;

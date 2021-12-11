@@ -24,7 +24,7 @@
     />
 
     <script type="module" src="/scripts/job-edit.js"></script>
-     
+
 
   </head>
   <body id="page-job-edit">
@@ -39,9 +39,9 @@
 
             <div class="input-wrapper">
               <label for="name">Nome do Job</label>
-              <input 
-                type="text" 
-                id="name" 
+              <input
+                type="text"
+                id="name"
                 name="name"
                 value="<%= job.name %>"
               />
@@ -51,26 +51,26 @@
               <div class="input-wrapper">
                 <label for="daily-hours">Quantas horas <br/>
                   por dia vai dedicar ao job?</label>
-                <input 
+                <input
                   type="number"
-                  step="0.1" 
-                  id="daily-hours" 
+                  step="0.1"
+                  id="daily-hours"
                   name="daily-hours"
-                  value="<%= job["daily-hours"] %>"/>
+                  value="<%= job[dailyHours] %>"/>
               </div>
 
               <div class="input-wrapper">
                 <label for="total-hours">Estimativa de <br/>
                   horas para esse Job?</label>
-                <input 
+                <input
                   type="number"
-                  id="total-hours" 
+                  id="total-hours"
                   name="total-hours"
-                  value="<%=job["total-hours"] %>" />
+                  value="<%=job[totalHours] %>" />
               </div>
             </div>
           </fieldset>
-    
+
         </form>
       </main>
       <aside class="card">
@@ -79,23 +79,23 @@
           O valor do projeto ficou em <strong>R$ <%= job.budget.toFixed(2).replace('.', ',') %> </strong>
         </p>
         <div class="button-group">
-          <button 
-            class="button green" 
-            form="form-job" 
-            type="submit" 
+          <button
+            class="button green"
+            form="form-job"
+            type="submit"
             title="Salvar Dados">Salvar</button>
-          <a 
-            href="#" 
+          <a
+            href="#"
             class="button gray open-modal"
             >
-            <img 
-              src="/images/trash-24.svg" 
-              alt="Cancelar cadastro" 
+            <img
+              src="/images/trash-24.svg"
+              alt="Cancelar cadastro"
               title="Cancelar cadastro">
           </a>
         </div>
       </aside>
-      
+
     </div>
     <!-- end container -->
 
@@ -104,11 +104,11 @@
         <img src="/images/trash-48.svg" alt="Excluir Job" title="Excluir Job" />
         <h3>Excluir Job</h3>
         <p>Quer mesmo excluir esse job? <br/>
-        Ele será apagado para sempre.  
+        Ele será apagado para sempre.
         </p>
         <footer>
-          <a 
-            class="button gray" 
+          <a
+            class="button gray"
             href="#">Cancelar</a>
           <button
             class="button red"
@@ -116,13 +116,12 @@
             form="delete-job">Excluir Job</button>
         </footer>
       </div>
-      <form 
-        method="post" 
-        action="/job/delete/<%= job.id %> " 
+      <form
+        method="post"
+        action="/job/delete/<%= job.id %> "
         id="delete-job">
       </form>
     </div>
     <!-- end modal-wrapper -->
   </body>
 </html>
- 

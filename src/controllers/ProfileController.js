@@ -1,35 +1,35 @@
-const Profile = require('../model/Profile')
+import { getProfileService,  updateProfileService } from "../model/Profile";
 
-module.exports = {
-    async index(req, res) {
-        return res.render('profile', { profile: await Profile.get() })
-    },
-    async update(req, res) {
-        //req.body para para
-        const data = req.body
-        const profile = await Profile.get()
+export async function index(req, res) {
+	return res.render("profile", { profile: await getProfileService() });
+}
 
-        //definir quantas semanas tem um atribuindo
-        const weeksPerYears = 52
+export async function update(req, res) {
+	//req.body para para
+	const data = req.body;
+	const profile = await getProfileService();
+	console.log(data);
 
-        //remover as semanas de ferias do ano, para pegar quantas semanas tem em um mes
-        const weekPeerMonth = (weeksPerYears - data["vacation-per-year"]) / 12
+	//definir quantas semanas tem um atribuindo
+	const weeksPerYears = 52;
 
-        //quantas horas por semana estou trabalhando
-        const weekTotalHours = data["hours-per-day"] * data["days-per-week"]
+	//remover as semanas de ferias do ano, para pegar quantas semanas tem em um mes
+	const weekPeerMonth = (weeksPerYears - data["vacationPerYear"]) / 12;
 
-        //total de horas trabalhadas no mes 
-        const monthlyTotalHours = weekTotalHours * weekPeerMonth
+	//quantas horas por semana estou trabalhando
+	const weekTotalHours = data["hoursPerDay"] * data["daysPerWeek"];
 
-        //qual será o valor da hora?
-        const valueHours = data["monthly-budget"] / monthlyTotalHours
+	//total de horas trabalhadas no mes
+	const monthlyTotalHours = weekTotalHours * weekPeerMonth;
 
-        await Profile.update({
-            ...profile,
-            ...req.body,
-            "value-hour": valueHours
-        })
+	//qual será o valor da hora?
+	const valueHours = data["monthly-budget"] / monthlyTotalHours;
 
-        return res.redirect('/profile')
-    },
+	await updateProfileService({
+		...profile,
+		...req.body,
+		"value-hour": valueHours
+	});
+
+	return res.redirect("/profile");
 }

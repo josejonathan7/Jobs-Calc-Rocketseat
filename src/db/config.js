@@ -1,9 +1,9 @@
-const sqlite3 = require('sqlite3')
-const { open } = require('sqlite')
+import { Database } from "sqlite3";
+import { open } from "sqlite";
 
-module.exports = () => 
-    open({
-        filename: './database.sqlite',
-        driver: sqlite3.Database
-    });
+export  const database = () =>
+	open({
+		filename: "./database.sqlite",
+		driver: Database
+	});
 

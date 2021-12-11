@@ -1,9 +1,9 @@
-import {database as Database} from "./config";
+"use strict";var _config = require('./config');
 
 const initDb = {
 	async init() {
 
-		const db = await Database();
+		const db = await _config.database.call(void 0, );
 
 		await db.exec(`CREATE TABLE profile(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

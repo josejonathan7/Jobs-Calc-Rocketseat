@@ -1,4 +1,4 @@
-
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});
 function remainingDays(job) {
 	//calculo de tempo restante
 	const remainingDays = (job["total-hours"] / job["daily-hours"]).toFixed();
@@ -18,4 +18,4 @@ function remainingDays(job) {
 
 function calculateBudget(job, valueHours) { return valueHours * job["total-hours"]; }
 
-export { remainingDays, calculateBudget };
+exports.remainingDays = remainingDays; exports.calculateBudget = calculateBudget;
